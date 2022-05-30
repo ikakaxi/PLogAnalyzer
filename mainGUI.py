@@ -13,8 +13,8 @@ from aboutGUI import *
 import sys
 import os
 import codecs
-from lib import decode_mars_nocrypt_log_file as nocrypt
-from lib import decode_mars_crypt_log_file as crypt
+# from lib.py2 import decode_mars_crypt_log_file as crypt, decode_mars_nocrypt_log_file as nocrypt
+from lib.py3 import decode_mars_crypt_log_file as crypt, decode_mars_nocrypt_log_file as nocrypt
 
 levelIndex = 0
 tagIndex = 1
