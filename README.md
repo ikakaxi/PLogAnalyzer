@@ -1,5 +1,7 @@
 # PLogAnalyzer
 
+![示例图](img/示例图.jpg)
+
 ## 使用方式：
 1. 首先安装 http://slproweb.com/download/Win64OpenSSL-1_1_1n.msi ，安装时安装到默认的C盘路径不要变否则脚本会找不到对应的文件
    > win32OpenSSL-1_1_1n.exe未测试，提供下载地址请自行测试：
