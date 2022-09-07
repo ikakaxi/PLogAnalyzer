@@ -27,3 +27,6 @@ class LogItem(object):
             return self.position
         elif column is messageIndex:
             return self.message
+
+    def appendMessage(self, message):
+        self.message = self.message + "\n" + message

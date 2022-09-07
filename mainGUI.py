@@ -13,6 +13,7 @@ from aboutGUI import *
 import sys
 import os
 import codecs
+import re
 # from lib.py2 import decode_mars_crypt_log_file as crypt, decode_mars_nocrypt_log_file as nocrypt
 from lib.py3 import decode_mars_crypt_log_file as crypt, decode_mars_nocrypt_log_file as nocrypt
 
@@ -24,7 +25,7 @@ messageIndex = 4
 tagFilterAll = "all"
 maxWidth = 0
 maxLength = 0
-
+logStartRule = re.compile('^[A-Z]{1};')
 
 class MainGUI(QWidget):
 
@@ -99,20 +100,27 @@ class MainGUI(QWidget):
     def createLogItem(self, line):
         strs = line.split(";")
         # D;bluetooth;[2022-04-22 15:37:52:637];(MainActivity.kt:22);我是蓝牙日志
-        return LogItem(strs[levelIndex],
-                       strs[tagIndex],
-                       strs[dateIndex],
-                       strs[positionIndex],
-                       strs[messageIndex])
+        try:
+            return LogItem(strs[levelIndex],
+                           strs[tagIndex],
+                           strs[dateIndex],
+                           strs[positionIndex],
+                           strs[messageIndex])
+        except Exception as e:
+            print("Exception = %s ,strs = %s" % (e, strs))
+            return LogItem("", "", "", "", "")
 
     # 读文件，并返回读取的数据列表
     def readFile(self, table, logFilePath):
         _logFilePath = logFilePath + ".log"
-        with codecs.open(_logFilePath, encoding='utf-8') as f:
+        with codecs.open(_logFilePath, encoding='utf-8') as file:
             logItemList = []
-            for line in f:
-                _line = line.strip('\n')
-                logItemList.append(self.createLogItem(_line))
+            for line in file:
+                curLine = line.strip()
+                if (logStartRule.match(curLine)):
+                    logItemList.append(self.createLogItem(curLine))
+                else:
+                    logItemList[len(logItemList) - 1].appendMessage(curLine)
             return logItemList
 
     # 打开xlog后缀的日志文件
