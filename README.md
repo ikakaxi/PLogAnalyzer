@@ -18,7 +18,7 @@ http://slproweb.com/products/Win32OpenSSL.html
 4. 如果网络不好无法在线安装`pyelliptic1.5.10`也可以直接使用resource里的下载包，下载包也是用上面的下载地址得到的，下载后解压，执行 `python setup.py install` 安装 `pyelliptic1.5.10`
 5. 安装`pyinstaller：pip install pyinstaller==3.2.1`
 6. 这里有个坑，你直接运行下面的步骤会报错，因为少了个文件，但是xlog里并没有告诉你少文件，所以需要把resource文件夹下面的libeay32.dll拷贝到C:\Windows\System32，如果是64位，则在C:\Windows\SysWOW64
-7. 运行`pyinstaller -F -w mainGUI.py`
+7. 运行`pyinstaller -w mainGUI.py`
 
 ### mac：
 > mac我用的是python3，因为我安装不上python2的Qt5
@@ -29,4 +29,4 @@ http://slproweb.com/products/Win32OpenSSL.html
 3. 如果网络不好无法在线安装`pyelliptic1.5.10`也可以直接使用resource里的下载包，下载包也是用上面的下载地址得到的，下载后解压，执行 `python3 setup.py install` 安装 `pyelliptic1.5.10`
    > 如果没权限，执行：sudo python3 setup.py install
 3. 安装`pyinstaller：pip3 install pyinstaller`
-4. 运行`pyinstaller -F -w mainGUI.py`
+4. 运行`pyinstaller -w mainGUI.py`
