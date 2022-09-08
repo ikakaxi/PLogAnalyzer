@@ -7,6 +7,7 @@ from binascii import hexlify, unhexlify
 
 import pyelliptic
 
+encoding = 'utf-8'
 
 def createPrivateKeyAndPublicKey():
     CURVE = 'secp256k1'
@@ -15,11 +16,11 @@ def createPrivateKeyAndPublicKey():
 
     svr_pubkey = svr.get_pubkey()
     svr_privkey = svr.get_privkey()
-    privateKey = hexlify(svr_privkey)
+    privateKey = hexlify(svr_privkey).decode(encoding)
     # print("save private key")
     # print(privateKey)
 
-    publicKey = "%s%s" % (hexlify(svr.pubkey_x), hexlify(svr.pubkey_y))
+    publicKey = "%s%s" % (hexlify(svr.pubkey_x).decode(encoding), hexlify(svr.pubkey_y).decode(encoding))
     # print("\nappender_open's parameter:")
     # print(publicKey)
     return privateKey, publicKey
